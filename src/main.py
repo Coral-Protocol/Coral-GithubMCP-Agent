@@ -108,9 +108,7 @@ async def main():
 
     prompt = ChatPromptTemplate.from_messages(
         [
-            SystemMessage(
-                content=f"{{coral_instruction}} {SYSTEM_PROMPT} {EXTRA_PROMPT} {{coral_messages}}"
-            ),
+            ("system", f"{{coral_instruction}} {SYSTEM_PROMPT} {EXTRA_PROMPT} {{coral_messages}}"),
             MessagesPlaceholder("history"),
         ]
     )
@@ -166,12 +164,8 @@ async def main():
             step_result: BaseMessage = await chain.ainvoke(
                 {
                     # We pass in our loaded resources here (as_string is safe here because we know these resources always return text)
-                    "coral_instruction": [
-                        SystemMessage(content=coral_instruction.as_string())
-                    ],
-                    "coral_messages": [
-                        SystemMessage(content=coral_messages.as_string())
-                    ],
+                    "coral_instruction": coral_instruction.as_string(),
+                    "coral_messages": coral_messages.as_string(),
                     # and our message history
                     "history": history.messages,
                 }
