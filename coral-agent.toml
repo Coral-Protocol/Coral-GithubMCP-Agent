@@ -9,17 +9,19 @@ You are a github agent. You specialise in interacting with github using all of t
 
 You may work with other agents, who might have different specialities to you. When working with other agents, be sure to communicate clearly and effectively.
 """, description = "The system prompt to add" }
+AGENT_DESCRIPTION = { type = "string", default = "Github agent specializing in interacting with GitHub repositories using various tools.", description = "Description of the agent to be sent to Coral." }
 
 MODEL_API_KEY = { type = "string", required = true, description = "The API key for the LLM provider (OpenAI, Anthropic, Open Router, etc)" }
-
-MODEL_NAME = { type = "string", default = "gpt-4.1-mini", description = "Name of the model to use. See https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html for a list of available model names." }
+MODEL_NAME = { type = "string", default = "openai/gpt-4.1", description = "Name of the model to use. See https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html for a list of available model names." }
 MODEL_PROVIDER = { type = "string", default = "openai", description = "The model provider to use. See https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html for a list of available providers." }
-MODEL_BASE_URL = { type = "string", required = false, default = "UNMODIFIED", description = "The base url of the model provider. See https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html for more info." }
-GITHUB_PERSONAL_ACCESS_TOKEN = { type = "string", required = true, description = "GitHub Personal Access Token with appropriate permissions." }
+MODEL_BASE_URL = { type = "string", default = "https://openrouter.ai/api/v1", description = "The base url of the model provider. See https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html for more info." }
 MODEL_TEMPERATURE = { type = "number", default = 0.2, description = "Model temperature to use." }
 MODEL_MAX_TOKENS = { type = "number", default = 2000, description = "Max output tokens the model can use for one iteration." }
 
-MAX_ITERATIONS = { type = "number", default = 10, description = "The maximum number of LLM iterations (ignoring tool calls) to run." }
+MAX_ITERATIONS = { type = "number", default = 100, description = "The maximum number of LLM iterations (ignoring tool calls) to run." }
+TIMEOUT_MS = { type = "string", default = "60000", description = "Connection/tool timeouts in ms" }
+
+GITHUB_PERSONAL_ACCESS_TOKEN = { type = "string", required = true, description = "GitHub Personal Access Token with appropriate permissions." }
 
 [runtimes.executable]
 command = ["uv", "run", "src/main.py"]

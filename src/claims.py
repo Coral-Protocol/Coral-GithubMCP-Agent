@@ -6,7 +6,7 @@ import requests
 import logging
 from rich.logging import RichHandler
 
-from utils import asserted_env
+from utils.asserted_env import asserted_env
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

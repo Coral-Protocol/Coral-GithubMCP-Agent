@@ -5,11 +5,15 @@ description = "Example Coral agent written in Langchain"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "langchain>=0.3.27",
+    "langchain==0.3.25",
     "langchain-anthropic>=0.3.20",
     "langchain-google-genai>=2.1.12",
-    "langchain-mcp-adapters>=0.1.10",
-    "langchain-openai>=0.3.33",
+    "langchain-community==0.3.24",
+    "langchain-experimental==0.3.4",
+    "langchain-groq==0.3.4",
+    "langchain-huggingface>=0.3.1",
+    "langchain-mcp-adapters==0.1.7",
+    "langchain-openai==0.3.26",
     "python-dotenv>=1.1.1",
     "requests>=2.32.5",
     "rich>=14.1.0",
