@@ -1,15 +1,16 @@
 [agent]
-name = "github-agent"
+name = "firecrawl-agent"
 version = "0.2.0"
-description = "An agent that can interact with GitHub repositories using a variety of tools."
+description = "An agent that can scrape websites, crawl sites, search the web, and extract content using Firecrawl."
 
 [options]
 SYSTEM_PROMPT = { type = "string", required=false, default="""
-You are a github agent. You specialise in interacting with github using all of the tools at your disposal.
+You are a Firecrawl agent. You specialise in web scraping, crawling websites, searching the web, and extracting structured content using Firecrawl's tools.
 
-You may work with other agents, who might have different specialities to you. When working with other agents, be sure to communicate clearly and effectively.
+You can scrape individual pages, crawl entire websites, map sites to discover URLs, search the web, extract structured data, and perform batch operations.
+When working with other agents, be sure to communicate clearly and effectively.
 """, description = "The system prompt to add" }
-AGENT_DESCRIPTION = { type = "string", default = "Github agent specializing in interacting with GitHub repositories using various tools.", description = "Description of the agent to be sent to Coral." }
+AGENT_DESCRIPTION = { type = "string", default = "Firecrawl agent specializing in web scraping, crawling, content extraction, and web search using Firecrawl's API.", description = "Description of the agent to be sent to Coral." }
 
 MODEL_API_KEY = { type = "string", required = true, description = "The API key for the LLM provider (OpenAI, Anthropic, Open Router, etc)" }
 MODEL_NAME = { type = "string", default = "openai/gpt-4.1", description = "Name of the model to use. See https://python.langchain.com/api_reference/langchain/chat_models/langchain.chat_models.base.init_chat_model.html for a list of available model names." }
@@ -21,7 +22,7 @@ MODEL_MAX_TOKENS = { type = "number", default = 2000, description = "Max output 
 MAX_ITERATIONS = { type = "number", default = 100, description = "The maximum number of LLM iterations (ignoring tool calls) to run." }
 TIMEOUT_MS = { type = "string", default = "60000", description = "Connection/tool timeouts in ms" }
 
-GITHUB_PERSONAL_ACCESS_TOKEN = { type = "string", required = true, description = "GitHub Personal Access Token with appropriate permissions." }
+FIRECRAWL_API_KEY = { type = "string", required = true, description = "Firecrawl API key. Get yours from https://firecrawl.dev/app/api-keys" }
 
 [runtimes.executable]
 command = ["uv", "run", "src/main.py"]

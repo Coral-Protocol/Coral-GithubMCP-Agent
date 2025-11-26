@@ -48,8 +48,8 @@ async def create_agent(coral_tools, agent_tools):
 
     prompt = ChatPromptTemplate.from_messages([
         ("system", """
-            You are GithubMCP-Agent, an AI agent designed to assist with GitHub-related tasks using the provided tools.
-            You have access to a variety of tools to help you perform tasks related to GitHub repositories, issues, pull requests, and more.
+            You are FirecrawlMCP-Agent, an AI agent designed to assist with web scraping, crawling, and content extraction tasks using Firecrawl.
+            You have access to a variety of tools to help you scrape websites, crawl entire sites, search the web, extract structured data, and discover URLs on websites.
 
             CURRENT USER REQUEST:
             {user_request}
@@ -109,11 +109,11 @@ async def main():
                 "timeout": TIMEOUT,
                 "sse_read_timeout": TIMEOUT,
             },
-            "github": {
+            "firecrawl": {
                 "transport": "stdio",
                 "command": "npx",
-                "args": ["-y", "@modelcontextprotocol/server-github"],
-                "env": {"GITHUB_PERSONAL_ACCESS_TOKEN": getenv("GITHUB_PERSONAL_ACCESS_TOKEN")},
+                "args": ["-y", "firecrawl-mcp"],
+                "env": {"FIRECRAWL_API_KEY": asserted_env("FIRECRAWL_API_KEY")},
             },
         }
     )
@@ -125,7 +125,7 @@ async def main():
         logger.info(f"Coral tools: {get_tools_description(coral_tools)}")
         coral_tools_list = {tool.name: tool for tool in coral_tools}
 
-        agent_tools = await client.get_tools(server_name="github")
+        agent_tools = await client.get_tools(server_name="firecrawl")
         logger.info(f"Agent tools count: {len(agent_tools)}")
         # logger.info(f"Agent tools: {get_tools_description(agent_tools)}")
         
